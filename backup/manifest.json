@@ -1,0 +1,9 @@
+{
+    "version": 0.1,
+    "tools": {
+        "backup": {
+            "label": "backup",
+            "path": "index.html"
+        }
+    }
+}
