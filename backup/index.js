@@ -1,9 +1,26 @@
 const dataDownload = document.getElementById("data_download");
-button.addEventListener("click", () => {
-    cockpit.read()
+dataDownload.addEventListener("click", () => {
+    cockpit.spawn(["back_db.sh"]).then(() => {
+        return cockpit.file('/tmp/sql.sql');
+    }).read().then((data) => {
+        let blob = new Blob([data], { type: "text/plain;charset=utf-8" });
+        saveAs(blob, "log.log");
+    }).catch(err => {
+        console.error(err);
+    });
 });
 
 const dataUpload = document.getElementById("data_upload");
+dataUpload.addEventListener("click", () => {
+
+    cockpit.file('/var/log/kern.log').write().then((data) => {
+        let blob = new Blob([data], { type: "text/plain;charset=utf-8" });
+        saveAs(blob, "log.log");
+    }).catch(err => {
+        console.error(err);
+    });
+});
+
 const logDownload = document.getElementById("log_download");
 logDownload.addEventListener('click', () => {
     cockpit.spawn(["ping", "-c", "4", address.value])
@@ -13,4 +30,4 @@ logDownload.addEventListener('click', () => {
 })
 
 // Send a 'init' message.  This tells integration tests that we are ready to go
-cockpit.transport.wait(function() { });
+cockpit.transport.wait(function () { });

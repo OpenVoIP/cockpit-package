@@ -2,7 +2,7 @@
     "version": 0.1,
     "tools": {
         "backup": {
-            "label": "backup",
+            "label": "数据备份",
             "path": "index.html"
         }
     }

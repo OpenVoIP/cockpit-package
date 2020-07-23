@@ -3,7 +3,7 @@
 
     "tools": {
         "pinger": {
-            "label": "Pinger",
+            "label": "网络 Ping",
             "path": "ping.html"
         }
     }
