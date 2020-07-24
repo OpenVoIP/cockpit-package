@@ -1,11 +1,15 @@
 const dataDownload = document.getElementById("data_download");
 dataDownload.addEventListener("click", () => {
-    cockpit.spawn(["back_db.sh"]).then(() => {
-        return cockpit.file('/tmp/sql.sql');
-    }).read().then((data) => {
-        let blob = new Blob([data], { type: "text/plain;charset=utf-8" });
-        saveAs(blob, "log.log");
-    }).catch(err => {
+    cockpit.script("/root/.local/share/cockpit/backup/bin/back_db.sh").stream(()=>{
+       
+    })
+    .then(()=>{
+     return cockpit.file('/tmp/sql.sql').read().then((data) => {
+          let blob = new Blob([data], { type: "text/plain;charset=utf-8" });
+          saveAs(blob, "coopaging.sql")
+   	});
+    })
+    .catch(err => {
         console.error(err);
     });
 });
