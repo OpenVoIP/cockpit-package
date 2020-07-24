@@ -15,15 +15,26 @@ dataDownload.addEventListener("click", () => {
 });
 
 const dataUpload = document.getElementById("data_upload");
+let uploadData;
 dataUpload.addEventListener("click", () => {
-
-    cockpit.file('/var/log/kern.log').write().then((data) => {
-        let blob = new Blob([data], { type: "text/plain;charset=utf-8" });
-        saveAs(blob, "log.log");
+    cockpit.file('/tmp/sql.sql').replace(uploadData).then((data) => {
+        console.log(data);
     }).catch(err => {
         console.error(err);
     });
 });
+
+
+let uploadFile = document.getElementById('upload_file');
+uploadFile.addEventListener('change', function() {
+    let reads = new FileReader();
+    let file = this.files[0];
+    reads.readAsText(file, 'utf-8');
+    reads.onload = function (e) {
+        uploadData = e.target.result;
+    };
+    console.log(file.name);
+}, false);
 
 const logDownload = document.getElementById("log_download");
 logDownload.addEventListener('click', () => {
