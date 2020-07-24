@@ -13,11 +13,16 @@
         <h3>数据备份</h3>
         <table class="form-table-ct">
             <tr>
-                <td><label class="control-label" for="address">数据库备份/恢复</label></td>
+                <td><label class="control-label" for="address">数据库备份</label></td>
                 <td>
                     <button class="pf-c-button pf-m-primary" id="data_download">下载</button>
-                    <input class="form-control" type="file" id="upload_file">
-                    <button class="pf-c-button pf-m-primary" id="data_upload">恢复</button>
+                </td>
+            </tr>
+            <tr>
+                <td><label class="control-label" for="address">数据库恢复</label></td>
+                <td>
+                    <input class="form-control" type="file" id="upload_file" accept="text/sql">
+                    <button class="pf-c-button pf-m-primary" id="data_upload">上传</button>
                 </td>
             </tr>
             <tr>
