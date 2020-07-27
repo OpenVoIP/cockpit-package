@@ -1,8 +1,12 @@
+
+const maxReadSize = 50 * 1024 * 1024;
+
 const dataDownload = document.getElementById("data_download");
+
 dataDownload.addEventListener("click", () => {
     cockpit.script("/root/.local/share/cockpit/backup/bin/back_db.sh").stream(() => {})
         .then(() => {
-            return cockpit.file('/tmp/sql.sql',{max_read_size: 100*1024*1024}).read().then((data) => {
+            return cockpit.file('/tmp/sql.sql',{max_read_size: maxReadSize}).read().then((data) => {
                 let blob = new Blob([data], { type: "text/plain;charset=utf-8" });
                 saveAs(blob, "coopaging.sql")
             });
@@ -40,7 +44,7 @@ uploadFile.addEventListener('change', function () {
 
 const logDownload = document.getElementById("log_download");
 logDownload.addEventListener('click', () => {
-    return cockpit.file('/var/log/messages',{max_read_size: 100*1024*1024}).read().then((data) => {
+    return cockpit.file('/var/log/messages',{max_read_size: maxReadSize}).read().then((data) => {
         let blob = new Blob([data], { type: "text/plain;charset=utf-8" });
         saveAs(blob, "messages.log")
     }).catch(err => console.error(err));
