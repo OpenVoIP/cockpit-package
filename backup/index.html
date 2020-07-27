@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>备份</title>
+    <title translate="yes">backup</title>
     <meta charset="utf-8">
     <link href="../base1/cockpit.css" type="text/css" rel="stylesheet">
     <script src="../base1/cockpit.js"></script>
@@ -10,26 +10,28 @@
 
 <body>
     <div class="container-fluid">
-        <h3>数据备份</h3>
+        <h2 translate="yes">backup</h2>
         <table class="form-table-ct">
             <tr>
-                <td><label class="control-label" for="address">数据库备份</label></td>
+                <td><label class="control-label" translate>sql_backup</label></td>
                 <td>
-                    <button class="pf-c-button pf-m-primary" id="data_download">下载</button>
+                    <button class="pf-c-button pf-m-primary" id="data_download" translate>download</button>
                 </td>
             </tr>
             <br/>
             <tr>
-                <td><label class="control-label" for="address">数据库恢复</label></td>
+                <td><label class="control-label" translate>sql_restore</label></td>
                 <td>
-                    <input class="form-control" type="file" id="upload_file" accept="text/sql">
-                    <button class="pf-c-button pf-m-primary" id="data_upload">上传</button>
+                    <input class="form-control" type="file" id="upload_file" style="visibility:hidden;" accept="text/sql">
+                    <span class="fa fa-exclamation-triangle"></span>
+                    </input>
+                    <button class="pf-c-button pf-m-primary" id="data_upload" translate>upload</button>
                 </td>
             </tr>
             <br/>
             <tr>
-                <td><label class="control-label" for="address">日志下载</label></td>
-                <td><button class="pf-c-button pf-m-primary" id="log_download">下载</button></td>
+                <td><label class="control-label" translate="">log_download</label></td>
+                <td><button class="pf-c-button pf-m-primary" id="log_download" translate>download</button></td>
             </tr>
         </table>
     </div>
