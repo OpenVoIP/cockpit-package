@@ -8,7 +8,7 @@ dataDownload.addEventListener("click", () => {
         .then(() => {
             return cockpit.file('/tmp/sql.sql', { max_read_size: maxReadSize }).read().then((data) => {
                 let blob = new Blob([data], { type: "text/plain;charset=utf-8" });
-                saveAs(blob, "coopaging.sql")
+                saveAs(blob, `${new Date().getTime()}.sql`)
             });
         })
         .catch(err => {
@@ -49,7 +49,7 @@ logDownload.addEventListener('click', () => {
         .then(() => {
             return cockpit.file('/tmp/log.log', { max_read_size: maxReadSize }).read().then((data) => {
                 let blob = new Blob([data], { type: "text/plain;charset=utf-8" });
-                saveAs(blob, "coopaging.sql")
+                saveAs(blob, `${new Date().getTime()}.log`)
             });
         })
         .catch(err => {
