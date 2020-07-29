@@ -4,9 +4,9 @@ const maxReadSize = 50 * 1024 * 1024;
 const dataDownload = document.getElementById("data_download");
 
 dataDownload.addEventListener("click", () => {
-    cockpit.script("/root/.local/share/cockpit/backup/bin/back_db.sh").stream(() => {})
+    cockpit.script("/root/.local/share/cockpit/backup/bin/back_db.sh").stream(() => { })
         .then(() => {
-            return cockpit.file('/tmp/sql.sql',{max_read_size: maxReadSize}).read().then((data) => {
+            return cockpit.file('/tmp/sql.sql', { max_read_size: maxReadSize }).read().then((data) => {
                 let blob = new Blob([data], { type: "text/plain;charset=utf-8" });
                 saveAs(blob, "coopaging.sql")
             });
@@ -20,7 +20,7 @@ const dataUpload = document.getElementById("data_upload");
 let uploadData;
 dataUpload.addEventListener("click", () => {
     cockpit.file('/tmp/sql.sql').replace(uploadData).then(() => {
-        return cockpit.script("/root/.local/share/cockpit/backup/bin/import_db.sh").stream(() => {});
+        return cockpit.script("/root/.local/share/cockpit/backup/bin/import_db.sh").stream(() => { });
     }).catch(err => {
         console.error(err);
     });
@@ -45,10 +45,16 @@ uploadFile.addEventListener('change', function () {
 
 const logDownload = document.getElementById("log_download");
 logDownload.addEventListener('click', () => {
-    return cockpit.file('/var/log/messages',{max_read_size: maxReadSize}).read().then((data) => {
-        let blob = new Blob([data], { type: "text/plain;charset=utf-8" });
-        saveAs(blob, "messages.log")
-    }).catch(err => console.error(err));
+    cockpit.script("/root/.local/share/cockpit/backup/bin/output_log.sh").stream(() => { })
+        .then(() => {
+            return cockpit.file('/tmp/log.log', { max_read_size: maxReadSize }).read().then((data) => {
+                let blob = new Blob([data], { type: "text/plain;charset=utf-8" });
+                saveAs(blob, "coopaging.sql")
+            });
+        })
+        .catch(err => {
+            console.error(err);
+        });
 })
 
 // 国际化处理
