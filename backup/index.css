@@ -1,0 +1,14 @@
+.fileinput-button {
+    position: relative;
+    overflow: hidden;
+}
+.fileinput-button input {
+    display: none;
+}
+.fileinput-button span {
+    vertical-align: unset !important;
+}
+
+#select_file {
+    color: red;
+}

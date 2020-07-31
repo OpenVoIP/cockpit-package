@@ -26,12 +26,16 @@ dataUpload.addEventListener("click", () => {
     });
 });
 
-
 let uploadFile = document.getElementById('upload_file');
 uploadFile.addEventListener('change', function () {
     let reads = new FileReader();
     let file = this.files[0];
-    console.log(file.name);
+    
+    let result = document.getElementById("select_file");
+    
+    result.innerHTML = file.name;
+    result.style.color = "green";
+
     if (!file.name || !file.name.endsWith('.sql')) {
         alert(`${file.name} not is sql file`);
         return;
