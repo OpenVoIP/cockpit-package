@@ -20,6 +20,9 @@ dataDownload.addEventListener("click", () => {
 const dataUpload = document.getElementById("data_upload");
 let uploadData;
 dataUpload.addEventListener("click", () => {
+    if(!uploadData){
+        return alert(`select file`);
+    }
     cockpit.file('/tmp/sql.sql').replace(uploadData).then(() => {
         return cockpit.script("/root/.local/share/cockpit/backup/bin/import_db.sh").stream(() => { });
     }).catch(err => {
@@ -66,7 +69,7 @@ logDownload.addEventListener('click', () => {
 
 // Send a 'init' message.  This tells integration tests that we are ready to go
 cockpit.transport.wait(function () {
-    console.log('language', cockpit);
+    // console.log('language', cockpit);
 });
 
 cockpit.translate();

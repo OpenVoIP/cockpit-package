@@ -1,11 +1,11 @@
-.fileinput-button {
+.file-input-button {
     position: relative;
     overflow: hidden;
 }
-.fileinput-button input {
+.file-input-button input {
     display: none;
 }
-.fileinput-button span {
+.file-input-button span {
     vertical-align: unset !important;
 }
 
